@@ -22,20 +22,14 @@ public class LightCheckerNeuron {
 	}
 
 	public boolean makeDecision(boolean[] incoming) {
+
 		int balance = 0;
 		for (int i = 0; i < incomingSignalCount; i++) {
 			int reliability = memory[i] * 100 / learnedCount;
 			balance += incoming[i] ? reliability - 50 : 50 - reliability;
 			System.out.println("Signal " + i + " answer is " + incoming[i] + ", reliability: " + reliability + " " +
 					"balance: " + balance);
-			/*if (memory[i] * 100 / learnedCount > 50) {
-				balance += incoming[i] ? 1 : -1;
-			} else {
-				balance += incoming[i] ? -1 : 1;
-			}*/
-
 		}
-
 		boolean answer = balance > 0;
 		learn(incoming, answer);
 		return answer;
