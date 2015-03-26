@@ -7,10 +7,10 @@ public class BasicMinimizer implements Minimizer {
 	private static final int[] DIRECTIONS = {-1, 1};
 
 	@Override
-	public double findMinimum(Function function, int parametersCount) {
+	public double findMinimum(Function function, int dimentions) {
 
-		double[] args = new double[parametersCount];
-		for (int i = 0; i < parametersCount; i++) {
+		double[] args = new double[dimentions];
+		for (int i = 0; i < dimentions; i++) {
 			args[i] = 1;
 		}
 
@@ -19,7 +19,7 @@ public class BasicMinimizer implements Minimizer {
 		boolean hasImproved;
 		do {
 			hasImproved = false;
-			for (int i = 0; i < parametersCount; i++) {
+			for (int i = 0; i < dimentions; i++) {
 				for (int DIRECTION : DIRECTIONS) {
 					args[i] += STEP * DIRECTION;
 					double newMin = function.apply(args);
